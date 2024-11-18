@@ -6,9 +6,9 @@ COPY . .
 
 RUN go mod tidy
 
-RUN go build -o bin
+RUN go build -ldflags "-w -s" -o bin
 
-FROM alpine:3.20.3
+FROM scratch
 
 COPY --from=builder /usr/src/app/bin /usr/src/bin
 
